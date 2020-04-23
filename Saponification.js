@@ -1,5 +1,5 @@
 
-const Fats = [{name:"Almond Oil",
+const Saponification = [{name:"Almond Oil",
                lye: 0.1367,
                potash: 0.1925},
 

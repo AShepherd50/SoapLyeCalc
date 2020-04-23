@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import {Picker} from '@react-native-community/picker';
-import {ScrollView} from "react-native-web";
 import { FontAwesome } from '@expo/vector-icons';
 
 export default class SoapForm extends React.Component{
@@ -80,6 +79,7 @@ export default class SoapForm extends React.Component{
                         <Picker.Item label="20%" color="black" value="0.2"/>
                     </Picker>
                 </View>
+               
                 <FontAwesome.Button
                     name="plus"
                     backgroundColor="#ad1457">
