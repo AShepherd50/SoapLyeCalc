@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native';
-import Constants from 'expo-constants';
 import {Picker} from '@react-native-community/picker';
 import { FontAwesome } from '@expo/vector-icons';
+import Saponification from './Saponification'
 
 export default class SoapForm extends React.Component{
     constructor() {
@@ -14,15 +14,26 @@ export default class SoapForm extends React.Component{
             uom: 'Unit of Measurement',  //unit of measurement
             lye: 'default',
             fats:[],
+            sapChart: Saponification,
+            modalVisible: false,
         }
     }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+        if (this.props !== prevProps) {
+            this.setState({fats:this.props.route.params.value.values})
+        }
+    }
+
+    handleInput = props =>{
+        this.setState({fats: props})
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.header}>
-                    <Text style={styles.title}>Soap Lye Calculator</Text>
-                </View>
-                <View style={styles.inputRow}>
+                <View style={styles.topRow}>
                     <Picker
                         selectedValue={this.state.type}
                         style={styles.dropDown}
@@ -79,10 +90,11 @@ export default class SoapForm extends React.Component{
                         <Picker.Item label="20%" color="black" value="0.2"/>
                     </Picker>
                 </View>
-               
                 <FontAwesome.Button
                     name="plus"
-                    backgroundColor="#ad1457">
+                    backgroundColor="#ad1457"
+                    onPress={()=>{this.props.navigation.navigate('FatScreen')}}
+                >
                     Add Fat
                 </FontAwesome.Button>
             </View>
@@ -101,6 +113,13 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         backgroundColor: "white",
         marginTop: 15,
+        marginBottom: 15,
+    },
+
+    topRow:{
+        flexDirection: "row",
+        backgroundColor: "white",
+        marginTop: 75,
         marginBottom: 15,
     },
 

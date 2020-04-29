@@ -284,3 +284,4 @@ const Saponification = [{name:"Almond Oil",
                 potash: 0.1858}
             ]
 
+export default Saponification
