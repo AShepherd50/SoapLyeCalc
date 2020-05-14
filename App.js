@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import Constants from 'expo-constants';
 import SoapForm from "./SoapForm";
 import FatScreen from "./FatScreen";
+import ResultScreen from './ResultScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import {FontAwesome} from "@expo/vector-icons";
@@ -33,6 +34,21 @@ export default function App() {
             name="FatScreen"
             component={FatScreen}
             options={FatScreen.navigationOptions}
+          />
+
+          <Stack.Screen
+            name="ResultScreen"
+            component={ResultScreen}
+            options={({navigation, route})=>({
+                headerTitle: 'Results',
+                headerStyle:{
+                    backgroundColor: '#00838f',
+                    borderStyle:'solid',
+                    borderTopColor: '#005662',
+                    borderTopWidth: 15,
+                },
+                headerTintColor: '#ffffff'
+            })}
           />
         </Stack.Navigator>
       </NavigationContainer>

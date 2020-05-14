@@ -41,7 +41,16 @@ export default class FatScreen extends React.Component{
             name: props.name,
             lye: props.lye,
             potash: props.potash,
-            weight: 0
+            lauric: props.lauric,
+            myristic: props.myristic,
+            palmitic: props.palmitic,
+            stearic: props.stearic,
+            ricinoleic: props.ricinoleic,
+            oleic: props.oleic,
+            linoleic: props.linoleic,
+            linolenic: props.linolenic,
+            weight: 0,
+            lyeRequired: 0
         }
         this.setState({values: [...this.state.values, newValue]},()=> this.props.navigation.setParams({values: this.state.values}))
 
