@@ -98,6 +98,7 @@ export default class SoapForm extends React.Component{
                                                         lyeAmount: lyeAmount,
                                                         fats: this.state.fats,
                                                         uom: this.state.uom,
+                                                        ratio: this.state.liquidRatio,
                                                         type: this.state.type,
                                                         fatAmount: fatAmount,
                                                         hardness: soapHardness,
@@ -296,13 +297,13 @@ const styles = StyleSheet.create({
 
     ratio:{
         width:(Math.round(Dimensions.get('window').width)/ 4),
-        color: 'black'
+        color: 'black',
     },
 
     ratioText:{
         fontSize: 21,
         fontWeight: 'bold',
-        paddingTop: 10,
+        alignSelf: 'center'
     },
 
     fatRow:{

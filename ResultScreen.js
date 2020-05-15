@@ -54,6 +54,10 @@ export default function ResultScreen({navigation, route}){
                     {(parseFloat(route.params.totalWeight) + parseFloat(route.params.water)).toFixed(2)}{route.params.uom}
                 </Text>
             </View>
+            <View style={styles.row}>
+                <Text style={styles.header}>Liquid : Lye Ratio:</Text>
+                <Text style={{fontSize: 24, paddingLeft: 25, paddingTop: 5}}>{route.params.ratio} : 1</Text>
+            </View>
             <Text style={styles.header}>Soap Properties:</Text>
             <View style={styles.row}>
                 <FontAwesome.Button
