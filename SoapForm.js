@@ -6,7 +6,6 @@ import {
     Dimensions,
     TextInput,
     ScrollView,
-    Button,
     TouchableOpacity,
     Picker,
     Platform
@@ -22,11 +21,12 @@ export default class SoapForm extends React.Component{
         this.state={
             type: 'Type',
             superfatting: "Superfatting",
-            uom: 'Unit of Measurement',  //unit of measurement
+            uom: 'g',  //unit of measurement
             lye: 'default',
             fats:[],
             sapChart: Saponification,
             modalVisible: false,
+            liquidRatio: 2.5
         }
     }
 
@@ -90,8 +90,8 @@ export default class SoapForm extends React.Component{
             soapCreamy = soapCreamy + (parseFloat(fat.creamy) * percent)
         })
 
-        //Total Weight of Lye Water Solution - Amount of Lye  = Amount of Water
-        let waterAmount = totalWeight * 0.3
+        //Total Weight of Lye Required * liquid Ratio  = Amount of Water
+        let waterAmount = lyeAmount * parseFloat(this.state.liquidRatio)
 
         this.props.navigation.navigate('ResultScreen', {totalWeight: totalWeight,
                                                         water: waterAmount,
@@ -126,18 +126,23 @@ export default class SoapForm extends React.Component{
                             <Picker.Item label="Solid" value="solid"/>
                         </Picker>
                     </View>
+                    <Text style={{fontSize: 16, fontWeight: 'bold'}}>Liquid : Lye Ratio</Text>
                     <View style={styles.inputRow}>
                         <Picker
-                            selectedValue={this.state.uom}
-                            style={styles.dropDown}
+                            selectedValue={this.state.liquidRatio}
+                            style={styles.ratio}
                             mode="dropdown"
                             onValueChange={(itemValue, itemIndex)=>
-                                this.setState({uom:itemValue})
+                                this.setState({liquidRatio:itemValue})
                             }>
-                            <Picker.Item label="Unit of Measurement" color="gray" value="0"/>
-                            <Picker.Item label="grams" value="g"/>
-                            <Picker.Item label="ounces" value="oz"/>
+                            <Picker.Item label="2.5"value="2.5"/>
+                            <Picker.Item label="4.0" value="4.0"/>
+                            <Picker.Item label="3.0" value="3.0"/>
+                            <Picker.Item label="2.0" value="2.0"/>
+                            <Picker.Item label="1.5" value="1.5"/>
+                            <Picker.Item label="1.0" value="1.0"/>
                         </Picker>
+                        <Text style={styles.ratioText}>:   1</Text>
                     </View>
                     <View style={styles.inputRow}>
                         <Picker
@@ -221,7 +226,7 @@ const DisplayFat = props =>{
         >
             <FontAwesome.Button
                 onPress={props.removeData}
-                color={Platform.OS === 'ios' ? '#ad1457' : 'white'}
+                color='white'
                 name="trash"
                 backgroundColor='#ad1457'
            />
@@ -259,6 +264,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         marginTop: 50,
         marginBottom: 15,
+        marginRight: 35
     },
 
     header:{
@@ -284,14 +290,19 @@ const styles = StyleSheet.create({
     },
 
     dropDown:{
-      width: (Math.round(Dimensions.get('window').width) - 80),
+      width: (Math.round(Dimensions.get('window').width) /2),
       color: "black",
     },
 
-    superDropdown:{
-        width: (Math.round(Dimensions.get('window').width) - 80),
-        color: "black",
-        marginLeft: 25
+    ratio:{
+        width:(Math.round(Dimensions.get('window').width)/ 4),
+        color: 'black'
+    },
+
+    ratioText:{
+        fontSize: 21,
+        fontWeight: 'bold',
+        paddingTop: 10,
     },
 
     fatRow:{
