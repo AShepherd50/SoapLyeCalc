@@ -11,6 +11,7 @@ export default class FatScreen extends React.Component{
 
         this.state={
             values:[],
+            keys:[]
         }
     }
 
@@ -36,23 +37,30 @@ export default class FatScreen extends React.Component{
     }};
 
     handleAdd = (props,index) =>{
-        const newValue = {
+
+        if(this.state.keys.includes(index)){
+            this.setState({values: this.state.values.filter(fat => fat.key !== index)},
+                () => this.props.navigation.setParams({values: this.state.values}))
+            return true
+        }
+
+        const nextValue = {
             key: index,
             name: props.name,
             lye: props.lye,
             potash: props.potash,
-            lauric: props.lauric,
-            myristic: props.myristic,
-            palmitic: props.palmitic,
-            stearic: props.stearic,
-            ricinoleic: props.ricinoleic,
-            oleic: props.oleic,
-            linoleic: props.linoleic,
-            linolenic: props.linolenic,
             weight: 0,
-            lyeRequired: 0
+            lyeRequired: 0,
+            hardness: (props.lauric + props.myristic + props.palmitic + props.stearic),
+            cleansing: (props.lauric + props.myristic),
+            conditioning: (props.linoleic + props.linolenic + props.oleic + props.ricinoleic),
+            bubbly: (props.lauric + props.myristic + props.ricinoleic),
+            creamy: (props.palmitic + props.ricinoleic + props.stearic)
         }
-        this.setState({values: [...this.state.values, newValue]},()=> this.props.navigation.setParams({values: this.state.values}))
+        this.setState({keys: [...this.state.keys, index]})
+        this.setState({values: [...this.state.values, nextValue]},
+            () => this.props.navigation.setParams({values: this.state.values}))
+
 
     }
 
@@ -90,7 +98,7 @@ export default class FatScreen extends React.Component{
 
 function Row(props){
     const[isAdded, addValue] = React.useState(props.isAdded);
-    const toggleButton = () => addValue(previousState => !previousState);
+    const toggleButton = () => {addValue(previousState => !previousState)};
     return (
         <View style={styles.row}>
 

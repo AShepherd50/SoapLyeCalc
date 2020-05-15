@@ -1,5 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TextInput, ScrollView, Button,TouchableOpacity, Picker} from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    View,
+    Dimensions,
+    TextInput,
+    ScrollView,
+    Button,
+    TouchableOpacity,
+    Picker,
+    Platform
+} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import Saponification from './Saponification';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -36,11 +47,6 @@ export default class SoapForm extends React.Component{
 
     calculate = () =>{
         let lyeAmount = 0
-        let hardness = 0;
-        let cleansing = 0;
-        let conditioning = 0;
-        let bubbly= 0;
-        let creamy = 0;
         let fatAmount = 0;
 
         this.state.fats.map((fat,index) => {
@@ -57,12 +63,6 @@ export default class SoapForm extends React.Component{
                 //add all answers to get the amount of lye
                 lyeAmount = lyeAmount + lye
 
-                hardness = hardness + parseFloat(fat.lauric) + parseFloat(fat.myristic) + parseFloat(fat.palmitic) + parseFloat(fat.stearic);
-                cleansing = cleansing + parseFloat(fat.lauric) + parseFloat(fat.myristic);
-                conditioning = conditioning + parseFloat(fat.linoleic) + parseFloat(fat.oleic) + parseFloat(fat.ricinoleic);
-                bubbly = bubbly + parseFloat(fat.lauric) + parseFloat(fat.myristic) + parseFloat(fat.ricinoleic);
-                creamy = creamy + parseFloat(fat.palmitic) + parseFloat(fat.ricinoleic) + parseFloat(fat.stearic);
-
                 this.state.fats[index].lyeRequired = lye
 
                 fatAmount = fatAmount + weight;
@@ -70,11 +70,28 @@ export default class SoapForm extends React.Component{
         )
 
         lyeAmount = lyeAmount - (lyeAmount * parseFloat(this.state.superfatting))
+
         //amount of lye / 0.3 = Total Weight of Lye Water Solution
         let totalWeight = lyeAmount + fatAmount
 
+        let soapHardness = 0;
+        let soapCleansing = 0;
+        let soapConditioning = 0;
+        let soapBubbly = 0;
+        let soapCreamy =0;
+
+        this.state.fats.map(fat =>{
+            let percent = fat.weight / fatAmount
+
+            soapHardness = soapHardness + (parseFloat(fat.hardness) * percent)
+            soapCleansing = soapCleansing + (parseFloat(fat.cleansing) * percent)
+            soapConditioning = soapConditioning + (parseFloat(fat.conditioning) * percent)
+            soapBubbly = soapBubbly + (parseFloat(fat.bubbly) * percent)
+            soapCreamy = soapCreamy + (parseFloat(fat.creamy) * percent)
+        })
+
         //Total Weight of Lye Water Solution - Amount of Lye  = Amount of Water
-        let waterAmount = totalWeight / 3.5
+        let waterAmount = totalWeight * 0.3
 
         this.props.navigation.navigate('ResultScreen', {totalWeight: totalWeight,
                                                         water: waterAmount,
@@ -83,11 +100,11 @@ export default class SoapForm extends React.Component{
                                                         uom: this.state.uom,
                                                         type: this.state.type,
                                                         fatAmount: fatAmount,
-                                                        hardness: hardness,
-                                                        cleansing: cleansing,
-                                                        conditioning: conditioning,
-                                                        bubbly: bubbly,
-                                                        creamy: creamy,})
+                                                        hardness: soapHardness,
+                                                        cleansing: soapCleansing,
+                                                        conditioning: soapConditioning,
+                                                        bubbly: soapBubbly,
+                                                        creamy: soapCreamy,})
     }
 
     render() {
@@ -204,8 +221,9 @@ const DisplayFat = props =>{
         >
             <FontAwesome.Button
                 onPress={props.removeData}
-                color="white"
+                color={Platform.OS === 'ios' ? '#ad1457' : 'white'}
                 name="trash"
+                backgroundColor='#ad1457'
            />
            <View style={styles.text}>
                 <Text>{props.fat.name}</Text>

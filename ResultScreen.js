@@ -64,7 +64,7 @@ export default function ResultScreen({navigation, route}){
                     onPress={()=>{alert("Hardness refers to the physical hardness of soap. The higher the number the harder the soap")}}
                 />
                 <Text style={styles.boldText}>Hardness:</Text>
-                <Text style={styles.infoText}>{route.params.hardness}
+                <Text style={styles.infoText}>{route.params.hardness.toFixed()}
                 </Text>
             </View>
             <View style={styles.row}>
@@ -77,7 +77,7 @@ export default function ResultScreen({navigation, route}){
                         " cleansing would be 12-22")}}
                 />
                 <Text style={styles.boldText}>Cleansing:</Text>
-                <Text style={styles.infoText}>{(route.params.cleansing)}
+                <Text style={styles.infoText}>{(route.params.cleansing.toFixed())}
                 </Text>
             </View>
             <View style={styles.row}>
@@ -90,7 +90,7 @@ export default function ResultScreen({navigation, route}){
                         " the more conditioning the bar is. A typical range would be 44-69")}}
                 />
                 <Text style={styles.boldText}>Conditioning:</Text>
-                <Text style={styles.infoText}>{route.params.conditioning.toFixed(2)}</Text>
+                <Text style={styles.infoText}>{route.params.conditioning.toFixed()}</Text>
             </View>
             <View style={styles.row}>
                 <FontAwesome.Button
@@ -103,7 +103,7 @@ export default function ResultScreen({navigation, route}){
                         " between 14-46")}}
                 />
                 <Text style={styles.boldText}>Bubbly Lather:</Text>
-                <Text style={styles.infoText}>{route.params.bubbly.toFixed(2)}</Text>
+                <Text style={styles.infoText}>{route.params.bubbly.toFixed()}</Text>
             </View>
             <View style={styles.row}>
                 <FontAwesome.Button
@@ -115,7 +115,7 @@ export default function ResultScreen({navigation, route}){
                         " The higher these numbers the creamy the lather will be and less bubbly the soap will be.")}}
                 />
                 <Text style={styles.boldText}>Creamy Lather:</Text>
-                <Text style={styles.infoText}>{route.params.creamy.toFixed(2)}</Text>
+                <Text style={styles.infoText}>{route.params.creamy.toFixed()}</Text>
             </View>
         </View>
     )
