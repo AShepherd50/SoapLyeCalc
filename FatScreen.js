@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet, ScrollView, View, Text, Dimensions, TextInput, Button} from 'react-native'
+import {StyleSheet, ScrollView, View, Text, Platform, Button} from 'react-native'
 import Saponification from "./Saponification";
 import {FontAwesome} from "@expo/vector-icons"
 
@@ -22,7 +22,7 @@ export default class FatScreen extends React.Component{
         headerRight: ()=>(
             <Button
                 title="Save"
-                color= '#ad1457'
+                color={Platform.OS === 'ios' ? 'white' : '#ad1457'}
                 onPress={()=>{navigation.navigate('SoapForm', {value:route.params})}}
             />
         ),

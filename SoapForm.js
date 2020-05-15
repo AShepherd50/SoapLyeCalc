@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, TextInput, ScrollView, Button,TouchableOpacity} from 'react-native';
-import {Picker} from '@react-native-community/picker';
+import { StyleSheet, Text, View, Dimensions, TextInput, ScrollView, Button,TouchableOpacity, Picker} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import Saponification from './Saponification';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -50,9 +49,9 @@ export default class SoapForm extends React.Component{
 
                 // for each fat do (amount of fat)*(saponification value)
                 if(this.state.type === 'liquid') {
-                    lye = (parseFloat(fat.potash) * weight) * (1 - parseFloat(this.state.superfatting))
+                    lye = (parseFloat(fat.potash) * weight)
                 }else{
-                    lye = (parseFloat(fat.lye) * weight) * ( 1- parseFloat(this.state.superfatting))
+                    lye = (parseFloat(fat.lye) * weight)
                 }
 
                 //add all answers to get the amount of lye
@@ -70,11 +69,12 @@ export default class SoapForm extends React.Component{
             }
         )
 
+        lyeAmount = lyeAmount - (lyeAmount * parseFloat(this.state.superfatting))
         //amount of lye / 0.3 = Total Weight of Lye Water Solution
-        let totalWeight = lyeAmount / 0.3
+        let totalWeight = lyeAmount + fatAmount
 
         //Total Weight of Lye Water Solution - Amount of Lye  = Amount of Water
-        let waterAmount = totalWeight - lyeAmount
+        let waterAmount = totalWeight / 3.5
 
         this.props.navigation.navigate('ResultScreen', {totalWeight: totalWeight,
                                                         water: waterAmount,
@@ -202,10 +202,10 @@ const DisplayFat = props =>{
         <View
             style={styles.fatRow}
         >
-            <Button
+            <FontAwesome.Button
                 onPress={props.removeData}
-                color="#ad1457"
-                title="X"
+                color="white"
+                name="trash"
            />
            <View style={styles.text}>
                 <Text>{props.fat.name}</Text>

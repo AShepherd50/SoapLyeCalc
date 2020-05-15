@@ -1,12 +1,14 @@
 {
   "expo": {
-    "name": "SoapLyeCalc",
-    "slug": "SoapLyeCalc",
+    "name": "Soap!",
+    "slug": "Soap!",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
+    "owner": "immortalmoosedev",
+    "privacy": "unlisted",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

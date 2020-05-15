@@ -51,7 +51,7 @@ export default function ResultScreen({navigation, route}){
             <View style={styles.row}>
                 <Text style={styles.header}>Total Batch Yield: </Text>
                 <Text style={{paddingLeft: 25,fontSize: 24}}>
-                    {(parseFloat(route.params.totalWeight) + parseFloat(route.params.fatAmount)).toFixed(2)}{route.params.uom}
+                    {(parseFloat(route.params.totalWeight) + parseFloat(route.params.water)).toFixed(2)}{route.params.uom}
                 </Text>
             </View>
             <Text style={styles.header}>Soap Properties:</Text>
@@ -61,10 +61,11 @@ export default function ResultScreen({navigation, route}){
                     backgroundColor='#e9eaeb'
                     color='#ad1457'
                     size={16}
-                    onPress={()=>{alert("Hardness Description")}}
+                    onPress={()=>{alert("Hardness refers to the physical hardness of soap. The higher the number the harder the soap")}}
                 />
                 <Text style={styles.boldText}>Hardness:</Text>
-                <Text style={styles.infoText}>{route.params.hardness.toFixed(2)}</Text>
+                <Text style={styles.infoText}>{route.params.hardness}
+                </Text>
             </View>
             <View style={styles.row}>
                 <FontAwesome.Button
@@ -72,10 +73,12 @@ export default function ResultScreen({navigation, route}){
                     backgroundColor='#e9eaeb'
                     color='#ad1457'
                     size={16}
-                    onPress={()=>{alert("Cleansing Description")}}
+                    onPress={()=>{alert("Cleansing refers to the ability of the soap to grab onto oils. a typical range for " +
+                        " cleansing would be 12-22")}}
                 />
                 <Text style={styles.boldText}>Cleansing:</Text>
-                <Text style={styles.infoText}>{route.params.cleansing.toFixed(2)}</Text>
+                <Text style={styles.infoText}>{(route.params.cleansing)}
+                </Text>
             </View>
             <View style={styles.row}>
                 <FontAwesome.Button
@@ -83,7 +86,8 @@ export default function ResultScreen({navigation, route}){
                     backgroundColor='#e9eaeb'
                     color='#ad1457'
                     size={16}
-                    onPress={()=>{alert("Condition Description")}}
+                    onPress={()=>{alert("Condition predicts how well the soap will condition the skin. The higher the number" +
+                        " the more conditioning the bar is. A typical range would be 44-69")}}
                 />
                 <Text style={styles.boldText}>Conditioning:</Text>
                 <Text style={styles.infoText}>{route.params.conditioning.toFixed(2)}</Text>
@@ -94,7 +98,9 @@ export default function ResultScreen({navigation, route}){
                     backgroundColor='#e9eaeb'
                     color='#ad1457'
                     size={16}
-                    onPress={()=>{alert("Bubbly Lather Description")}}
+                    onPress={()=>{alert("This is the ability of the soap to lather and produce foamy bubbly lather. " +
+                        " The higher the number the more bubbly and less creamy the soap will be. A typical range would be " +
+                        " between 14-46")}}
                 />
                 <Text style={styles.boldText}>Bubbly Lather:</Text>
                 <Text style={styles.infoText}>{route.params.bubbly.toFixed(2)}</Text>
@@ -105,7 +111,8 @@ export default function ResultScreen({navigation, route}){
                     backgroundColor='#e9eaeb'
                     color='#ad1457'
                     size={16}
-                    onPress={()=>{alert("CreamyDescription")}}
+                    onPress={()=>{alert("This is the stability and creaminess of the lather produced by the soap." +
+                        " The higher these numbers the creamy the lather will be and less bubbly the soap will be.")}}
                 />
                 <Text style={styles.boldText}>Creamy Lather:</Text>
                 <Text style={styles.infoText}>{route.params.creamy.toFixed(2)}</Text>
