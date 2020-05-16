@@ -28,7 +28,7 @@ export default function ResultScreen({navigation, route}){
             </View>
             <View style={styles.row}>
                 <Text style={styles.boldText}>Amount of Water:</Text>
-                <Text style={styles.infoText}>{route.params.water.toFixed(2)} {route.params.uom}</Text>
+                <Text style={{fontSize: 16, paddingLeft: 118}}>{route.params.water.toFixed(2)} {route.params.uom}</Text>
             </View>
             <Text style={styles.header}>Fats Breakdown:</Text>
             <View style={styles.list}>
@@ -60,7 +60,7 @@ export default function ResultScreen({navigation, route}){
             </View>
             <View style={styles.row}>
                 <Text style={styles.headerAlt}>Liquid : Lye Ratio:</Text>
-                <Text style={{fontSize: 24, paddingLeft: 25}}>{route.params.ratio} : 1</Text>
+                <Text style={{fontSize: 24, paddingLeft: 32}}>{route.params.ratio} : 1</Text>
             </View>
             <Text style={styles.header}>Soap Properties:</Text>
             <View style={styles.row}>
@@ -150,17 +150,18 @@ const styles = StyleSheet.create({
 
     list:{
       flexDirection: 'row',
-      paddingLeft: 25
+      paddingLeft: 17
     },
 
     column:{
         fontWeight: 'bold',
         width: Math.round(Dimensions.get('window').width)/3,
+        fontSize: 16
     },
 
     tableText:{
         width: Math.round(Dimensions.get('window').width)/3,
-        paddingLeft: 5
+        fontSize: 14
     },
 
     boldText:{
