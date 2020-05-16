@@ -6,7 +6,11 @@ const FatBreakdown = props =>{
     return(
         <View style={styles.list}>
             <Text style={styles.tableText}>{props.fat.name}</Text>
-            <Text style={styles.tableText}>{props.fat.weight}{props.uom}</Text>
+            <Text style={{width: Math.round(Dimensions.get('window').width)/3,
+                          paddingLeft: 15,
+                          }}>
+                {props.fat.weight}{props.uom}
+            </Text>
             <Text style={styles.tableText}>
                 {((parseFloat(props.fat.weight) / (parseFloat(props.fatAmount))) * 100).toFixed(2)}%
             </Text>
@@ -16,8 +20,8 @@ const FatBreakdown = props =>{
 
 export default function ResultScreen({navigation, route}){
     return(
-        <View>
-            <Text style={styles.header}>Lye and Liquid:</Text>
+        <ScrollView>
+            <Text style={{fontWeight: 'bold', fontSize: 24, paddingLeft:15}}>Lye and Liquid:</Text>
             <View style={styles.row}>
                 <Text style={styles.boldText}>Lye {route.params.type === 'solid' ? 'Sodium Hydroxide(NaOH)': 'Potassium Hydroxide(KOH)'}:</Text>
                 <Text style={styles.infoText}>{route.params.lyeAmount.toFixed(2)} {route.params.uom}</Text>
@@ -49,14 +53,14 @@ export default function ResultScreen({navigation, route}){
                 <Text style={styles.infoText}>{route.params.fatAmount.toFixed(2)} {route.params.uom}</Text>
             </View>
             <View style={styles.row}>
-                <Text style={styles.header}>Total Batch Yield: </Text>
-                <Text style={{paddingLeft: 25,fontSize: 24}}>
+                <Text style={{fontWeight: 'bold', fontSize: 24, paddingTop: 30}}>Total Batch Yield: </Text>
+                <Text style={{paddingLeft: 25,fontSize: 24, paddingTop: 27}}>
                     {(parseFloat(route.params.totalWeight) + parseFloat(route.params.water)).toFixed(2)}{route.params.uom}
                 </Text>
             </View>
             <View style={styles.row}>
-                <Text style={styles.header}>Liquid : Lye Ratio:</Text>
-                <Text style={{fontSize: 24, paddingLeft: 25, paddingTop: 5}}>{route.params.ratio} : 1</Text>
+                <Text style={styles.headerAlt}>Liquid : Lye Ratio:</Text>
+                <Text style={{fontSize: 24, paddingLeft: 25}}>{route.params.ratio} : 1</Text>
             </View>
             <Text style={styles.header}>Soap Properties:</Text>
             <View style={styles.row}>
@@ -121,7 +125,7 @@ export default function ResultScreen({navigation, route}){
                 <Text style={styles.boldText}>Creamy Lather:</Text>
                 <Text style={styles.infoText}>{route.params.creamy.toFixed()}</Text>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -129,15 +133,24 @@ const styles = StyleSheet.create({
     header:{
       fontWeight: 'bold',
       fontSize: 24,
+      paddingLeft: 15,
+      paddingTop: 30
+    },
+
+    headerAlt:{
+        fontWeight: 'bold',
+        fontSize: 24,
     },
 
     row:{
         flexDirection: 'row',
-        paddingTop: 10
+        paddingLeft: 15,
+        paddingTop: 5
     },
 
     list:{
       flexDirection: 'row',
+      paddingLeft: 25
     },
 
     column:{
@@ -147,6 +160,7 @@ const styles = StyleSheet.create({
 
     tableText:{
         width: Math.round(Dimensions.get('window').width)/3,
+        paddingLeft: 5
     },
 
     boldText:{

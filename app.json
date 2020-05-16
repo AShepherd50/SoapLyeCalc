@@ -24,7 +24,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.immortalmoosedev.soap",
+      "buildNumber": "1.0.0",
+      "isTabletOnly": false
+    },
+
+    "android": {
+      "package": "com.immortalmoosedev.soap",
+      "versionCode": 1,
+      "permissions": []
     }
   }
 }

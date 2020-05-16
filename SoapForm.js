@@ -128,7 +128,7 @@ export default class SoapForm extends React.Component{
                         </Picker>
                     </View>
                     <Text style={{fontSize: 16, fontWeight: 'bold'}}>Liquid : Lye Ratio</Text>
-                    <View style={styles.inputRow}>
+                    <View style={styles.ratioRow}>
                         <Picker
                             selectedValue={this.state.liquidRatio}
                             style={styles.ratio}
@@ -145,7 +145,7 @@ export default class SoapForm extends React.Component{
                         </Picker>
                         <Text style={styles.ratioText}>:   1</Text>
                     </View>
-                    <View style={styles.inputRow}>
+                    <View style={styles.superRow}>
                         <Picker
                             selectedValue={this.state.superfatting}
                             style={styles.dropDown}
@@ -260,6 +260,23 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
 
+    superRow:{
+        flexDirection: "row",
+        backgroundColor: "white",
+        marginTop: 15,
+        marginBottom: 15,
+        marginLeft: 10
+    },
+
+    ratioRow:{
+        flexDirection: "row",
+        backgroundColor: "white",
+        marginTop: 15,
+        marginBottom: 15,
+        marginLeft: -40,
+        paddingLeft: 10
+    },
+
     topRow:{
         flexDirection: "row",
         backgroundColor: "white",
@@ -296,14 +313,15 @@ const styles = StyleSheet.create({
     },
 
     ratio:{
-        width:(Math.round(Dimensions.get('window').width)/ 4),
+        width:(Math.round(Dimensions.get('window').width)/ 3),
         color: 'black',
     },
 
     ratioText:{
         fontSize: 21,
         fontWeight: 'bold',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        paddingLeft: 20
     },
 
     fatRow:{
