@@ -8,7 +8,7 @@ import {
     ScrollView,
     TouchableOpacity,
     Picker,
-    Platform
+    Button,
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import Saponification from './Saponification';
@@ -123,27 +123,9 @@ export default class SoapForm extends React.Component{
                                 this.setState({type: itemValue})
                             }>
                             <Picker.Item label="Type" color="gray" value="0"/>
-                            <Picker.Item label="Liquid" value="liquid"/>
+                            <Picker.Item label="Liquid"value="liquid"/>
                             <Picker.Item label="Solid" value="solid"/>
                         </Picker>
-                    </View>
-                    <Text style={{fontSize: 16, fontWeight: 'bold'}}>Liquid : Lye Ratio</Text>
-                    <View style={styles.ratioRow}>
-                        <Picker
-                            selectedValue={this.state.liquidRatio}
-                            style={styles.ratio}
-                            mode="dropdown"
-                            onValueChange={(itemValue, itemIndex)=>
-                                this.setState({liquidRatio:itemValue})
-                            }>
-                            <Picker.Item label="2.5"value="2.5"/>
-                            <Picker.Item label="4.0" value="4.0"/>
-                            <Picker.Item label="3.0" value="3.0"/>
-                            <Picker.Item label="2.0" value="2.0"/>
-                            <Picker.Item label="1.5" value="1.5"/>
-                            <Picker.Item label="1.0" value="1.0"/>
-                        </Picker>
-                        <Text style={styles.ratioText}>:   1</Text>
                     </View>
                     <View style={styles.superRow}>
                         <Picker
@@ -185,6 +167,23 @@ export default class SoapForm extends React.Component{
                                 " you do not have a lye heavy soap.")}}
                         />
 
+                    </View>
+                    <View style={styles.row}>
+                        <Text style={{fontSize: 26}}>Unit of Measurement:</Text>
+                    </View>
+                    <View style={styles.row}>
+                        <TouchableOpacity
+                            onPress={()=>{this.setState({uom: 'g'})}}
+                            style={this.state.uom === 'g'? styles.uomButtonSelected: styles.uomButtonDefault}
+                        >
+                            <Text style={{fontSize: 36, color:'white', paddingBottom: 5}}>g</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={()=>{this.setState({uom: 'oz'})}}
+                            style={this.state.uom === 'oz'? styles.uomButtonSelected : styles.uomButtonDefault}
+                        >
+                            <Text style={{fontSize:36, color:'white', paddingBottom: 5}}>oz</Text>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.fatHeader}>
                         <Text style={styles.title}>Fats:</Text>
@@ -255,31 +254,28 @@ const styles = StyleSheet.create({
 
     inputRow:{
         flexDirection: "row",
-        backgroundColor: "white",
+        backgroundColor: "#e9eaeb",
         marginTop: 15,
         marginBottom: 15,
     },
 
     superRow:{
         flexDirection: "row",
-        backgroundColor: "white",
+        backgroundColor: "#f8f9fa",
         marginTop: 15,
         marginBottom: 15,
         marginLeft: 10
     },
 
-    ratioRow:{
+    row:{
         flexDirection: "row",
-        backgroundColor: "white",
-        marginTop: 15,
+        backgroundColor: "#e9eaeb",
         marginBottom: 15,
-        marginLeft: -40,
-        paddingLeft: 10
     },
 
     topRow:{
         flexDirection: "row",
-        backgroundColor: "white",
+        backgroundColor: "#f8f9fa",
         marginTop: 50,
         marginBottom: 15,
         marginRight: 35
@@ -362,5 +358,21 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginTop: 50
     },
+
+    uomButtonSelected:{
+        backgroundColor: '#00838f',
+        width: 50,
+        borderRadius: 10,
+        alignItems: 'center',
+        margin: 10
+    },
+
+    uomButtonDefault:{
+        backgroundColor: '#ad1457',
+        width: 50,
+        borderRadius: 10,
+        alignItems: 'center',
+        margin: 10
+    }
 
 });

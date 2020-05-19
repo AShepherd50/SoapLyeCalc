@@ -55,12 +55,8 @@ export default function ResultScreen({navigation, route}){
             <View style={styles.row}>
                 <Text style={{fontWeight: 'bold', fontSize: 24, paddingTop: 30}}>Total Batch Yield: </Text>
                 <Text style={{paddingLeft: 25,fontSize: 24, paddingTop: 27}}>
-                    {(parseFloat(route.params.totalWeight) + parseFloat(route.params.water)).toFixed(2)}{route.params.uom}
+                    {(parseFloat(route.params.totalWeight) + parseFloat(route.params.water)).toFixed(2)} {route.params.uom}
                 </Text>
-            </View>
-            <View style={styles.row}>
-                <Text style={styles.headerAlt}>Liquid : Lye Ratio:</Text>
-                <Text style={{fontSize: 24, paddingLeft: 32}}>{route.params.ratio} : 1</Text>
             </View>
             <Text style={styles.header}>Soap Properties:</Text>
             <View style={styles.row}>
