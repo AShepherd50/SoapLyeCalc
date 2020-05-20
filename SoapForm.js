@@ -190,7 +190,7 @@ export default class SoapForm extends React.Component{
                         <FontAwesome.Button
                             name="plus"
                             backgroundColor="#ad1457"
-                            onPress={()=>{this.props.navigation.navigate('FatScreen')}}
+                            onPress={()=>{this.props.navigation.navigate('FatScreen', this.state.fats)}}
                         >
                             Add Fat
                         </FontAwesome.Button>
