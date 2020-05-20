@@ -131,7 +131,10 @@ const styles = StyleSheet.create({
     },
 
     button:{
-        alignSelf: 'flex-start'
+        alignSelf: 'flex-start',
+        height: 50,
+        paddingLeft: 15,
+        paddingBottom: -5
     }
 
 })
