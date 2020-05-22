@@ -5,8 +5,9 @@ A simple Soap Lye calculator that is used to determine the amount of lye and wat
 
 Status: 
 Currently in the Internal Test Phase on the Android Play Store. Upload of app build file being processed in the apple Appstore as of May 22,2020. 
-
 ScreenShots:
+
+
 ![Image of Splash Screen](https://github.com/AShepherd50/SoapLyeCalc/blob/master/assets/shot3.jpg?raw=true)
 ![Image Initial Screen](https://github.com/AShepherd50/SoapLyeCalc/blob/master/assets/shot1.jpg?raw=true)
 ![Image of Fat Screen](https://github.com/AShepherd50/SoapLyeCalc/blob/master/assets/shot2.jpg?raw=true)
